@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tabs.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" onclick="window.location.href='/medicamentos/'">Medicamentos</button>
+        <button type="button" onclick="window.location.href='/ordenes/'">Ordenes</button>
+        <button type="button" onclick="window.location.href='/medfact/'">Med.Factura</button>
+        <button type="button" onclick="window.location.href='/facturas/'">Facturas</button>
+        <button type="button" >Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/menu/'">Volver</button>
+    </div>
+
+    <table id="tabla-personas">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for persona in personas %}
+            <tr data-id="{{ persona.cedula }}">
+                <td>{{ persona.cedula }}</td>
+                <td>{{ persona.nombre }}</td>
+                <td>{{ persona.apellido }}</td>
+                <td>{{ persona.edad }}</td>
+                <td>{{ persona.rol }}</td>
+                <td><button class="eliminar">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Agregar nueva persona</h2>
+
+    <form id="formulario-persona" method="POST">
+        {% csrf_token %}
+        Cédula: <input type="number" name="cedula" required><br>
+        Nombre: <input type="text" name="nombre" required><br>
+        Apellido: <input type="text" name="apellido" required><br>
+        Edad: <input type="number" name="edad" required><br>
+        Rol: <input type="text" name="rol" required><br>
+        <input type="submit" value="Agregar">
+    </form>
+
+    {% load static %}
+
+    <script>
+        function eliminarFila(fila) {
+            var id = fila.data('id');
+            $.ajax({
+                url: '{% url "eliminar_persona" %}',
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    cedula: id
+                },
+                success: function(response) {
+                    fila.remove();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        function agregarFila(formulario) {
+
+            var datos = formulario.serializeArray();
+
+            var persona = {};
+
+            for (var i = 0; i < datos.length; i++) {
+                persona[datos[i].name] = datos[i].value;
+            }
+            $.ajax({
+                url: '{% url "agregar_persona" %}',
+                method: 'POST',
+                data: persona,
+                success: function(response) {
+
+                    var fila = $('<tr data-id="' + persona.cedula + '">');
+                    fila.append('<td>' + persona.cedula + '</td>');
+                    fila.append('<td>' + persona.nombre + '</td>');
+                    fila.append('<td>' + persona.apellido + '</td>');
+                    fila.append('<td>' + persona.edad + '</td>');
+                    fila.append('<td>' +persona.rol+ '</td>');
+                    fila.append('<td><button class="eliminar">Eliminar</button></td>');
+                    $('#tabla-personas tbody').append(fila);
+                    formulario[0].reset();
+
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+
+            $('#tabla-personas').on('click', '.editar', function() {
+                var fila = $(this).parent().parent();
+                fila.children('td:not(:last-child)').each(function() {
+                    editarCelda($(this));
+                });
+            });
+
+            $('#tabla-personas').on('click', '.eliminar', function() {
+                var fila = $(this).parent().parent();
+                if (confirm('¿Está seguro de eliminar esta persona?')) {
+                    eliminarFila(fila);
+                }
+            });
+
+            $('#formulario-persona').on('submit', function(event) {
+                event.preventDefault();
+                agregarFila($(this));
+            });
+
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>

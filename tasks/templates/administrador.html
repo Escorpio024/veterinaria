@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Veterinaria</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <img src="{% static 'img/perro.jpg' %}" class="logo">
+        <li><a href="/menu/">TABLAS</a></li>  
+        <li>
+          <a class="inicio" href="#">Admin</a>
+          <ul class="submenu">
+            <li><a href="/">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>VETERINARIA PARA TODOS</h1>
+
+    <section id="sec1">
+      <img src="{% static 'img/dos.jpg' %}" alt="">
+    </section>
+  </div>
+
+  <footer>
+    <div class="contenedor-texto">
+      <p>Vet Clinic 2023 © Sabaneta, Colombia</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tabs.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" >Medicamentos</button>
+        <button type="button" onclick="window.location.href='/ordenes/'">Ordenes</button>
+        <button type="button" onclick="window.location.href='/medfact/'">Med.Factura</button>
+        <button type="button" onclick="window.location.href='/facturas/'">Facturas</button>
+        <button type="button" onclick="window.location.href='/personas/'">Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/menu/'">Volver</button>
+    </div>
+
+    <table id="tabla-medicamentos">
+        <thead>
+            <tr>
+                <th>Medicamento</th>
+                <th>ID Medicamento</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicamento in medicamentos %}
+            <tr data-id="{{ medicamento.id_medicamento }}">
+                <td>{{ medicamento.medicamento }}</td>
+                <td>{{ medicamento.id_medicamento }}</td>
+                <td>{{ medicamento.cantidad }}</td>
+                <td>{{ medicamento.precio }}</td>
+                <td><button class="eliminar">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Agregar nuevo medicamento</h2>
+
+    <form id="formulario-medicamento" method="POST">
+        {% csrf_token %}      
+        Medicamento: <input type="text" name="medicamento" required><br>
+        Cantidad: <input type="number" name="cantidad" required><br>
+        Precio: <input type="number" name="precio" required><br>
+        <input type="submit" value="Agregar">
+    </form>
+
+    {% load static %}
+    <script>
+        function eliminarFila(fila) {
+            var id = fila.data('id');
+            $.ajax({
+                url: '{% url "eliminar_medicamento" %}',
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    id_medicamento: id
+                },
+                success: function(response) {
+                    fila.remove();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        function agregarFila(formulario) {
+            var datos = formulario.serializeArray();
+            var medicamento = {};
+            for (var i = 0; i < datos.length; i++) {
+                medicamento[datos[i].name] = datos[i].value;
+            }
+            $.ajax({
+                url: '{% url "agregar_medicamento" %}',
+                method: 'POST',
+                data: medicamento,
+                success: function(response) {
+
+                    var fila = $('<tr data-id="' + medicamento.id_medicamento + '">');
+                    fila.append('<td>' + medicamento.medicamento + '</td>');
+                    fila.append('<td>' + medicamento.id_medicamento + '</td>');
+                    fila.append('<td>' + medicamento.cantidad + '</td>');
+                    fila.append('<td>' + medicamento.precio + '</td>');
+                    fila.append('<td><button class="eliminar">Eliminar</button></td>');
+                    $('#tabla-medicamentos tbody').append(fila);
+                    formulario[0].reset();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+
+            $('#tabla-medicamentos').on('click', '.editar', function() {
+                var fila = $(this).parent().parent();
+                fila.children('td:not(:last-child)').each(function() {
+                    editarCelda($(this));
+                });
+            });
+
+            $('#tabla-medicamentos').on('click', '.eliminar', function() {
+                var fila = $(this).parent().parent();
+                if (confirm('¿Está seguro de eliminar esta medicamento?')) {
+                    eliminarFila(fila);
+                }
+            });
+
+            $('#formulario-medicamento').on('submit', function(event) {
+                event.preventDefault();
+                agregarFila($(this));
+            });
+
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>

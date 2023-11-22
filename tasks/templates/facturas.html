@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tabs.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" onclick="window.location.href='/medicamentos/'">Medicamentos</button>
+        <button type="button" onclick="window.location.href='/ordenes/'">Ordenes</button>
+        <button type="button" onclick="window.location.href='/medfact/'">Med.Factura</button>
+        <button type="button" >Facturas</button>
+        <button type="button" onclick="window.location.href='/personas/'">Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/menu/'">Volver</button>
+    </div>
+
+    <table id="tabla-facturavet">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>ID Mascota</th>
+                <th>Cédula</th>
+                <th>ID Orden</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for facturavet in facturas %}
+            <tr data-id="{{ facturavet.id_factura }}">
+                <td>{{ facturavet.id_factura }}</td>
+                <td>{{ facturavet.mascota }}</td>
+                <td>{{ facturavet.persona }}</td>
+                <td>{{ facturavet.orden }}</td>
+                <td>{{ facturavet.fecha }}</td>
+                <td>{{ facturavet.total }}</td>
+                <td><button class="eliminar">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Agregar nueva factura veterinario</h2>
+
+    <form id="formulario-facturavet" method="POST">
+        {% csrf_token %}
+        ID Factura: <input type="number" name="id_factura" required><br>
+        ID Mascota: <input type="number" name="mascota" required><br>
+        Cédula: <input type="number" name="persona" required><br>
+        ID Orden: <input type="number" name="orden" required><br>
+        Fecha: <input type="text" name="fecha" required><br>
+        Total: <input type="number" name="total" required><br>
+        <input type="submit" value="Agregar">
+    </form>
+
+    <script>
+        function eliminarFila(fila) {
+            var id = fila.data('id');
+            $.ajax({
+                url: '{% url "eliminar_factura" %}',
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    id_factura: id
+                },
+                success: function(response) {
+                    fila.remove();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        function agregarFila(formulario) {
+            var datos = formulario.serializeArray();
+            var facturavet = {};
+            for (var i = 0; i < datos.length; i++) {
+                    facturavet[datos[i].name] = datos[i].value;
+            }
+            $.ajax({
+                url: '{% url "agregar_factura" %}',
+                method: 'POST',
+                data: facturavet,
+                success: function(response) {
+                    var fila = $('<tr data-id="' + facturavet.id_factura + '">');
+                    fila.append('<td>' + facturavet.id_factura  + '</td>');
+                    fila.append('<td>' + facturavet.mascota + '</td>');
+                    fila.append('<td>' + facturavet.persona + '</td>');
+                    fila.append('<td>' + facturavet.orden + '</td>');
+                    fila.append('<td>' + facturavet.fecha + '</td>');
+                    fila.append('<td>' + facturavet.total + '</td>');
+                    fila.append('<td><button class="eliminar">Eliminar</button></td>');
+                    $('#tabla-facturavet tbody').append(fila);
+                    formulario[0].reset();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+
+            $('#tabla-facturavet').on('click', '.editar', function() {
+                var fila = $(this).parent().parent();
+                fila.children('td:not(:last-child)').each(function() {
+                    editarCelda($(this));
+                });
+            });
+
+            $('#tabla-facturavet').on('click', '.eliminar', function() {
+                var fila = $(this).parent().parent();
+                if (confirm('¿Está seguro de eliminar esta facturavet?')) {
+                    eliminarFila(fila);
+                }
+            });
+
+            $('#formulario-facturavet').on('submit', function(event) {
+                event.preventDefault();
+                agregarFila($(this));
+            });
+
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

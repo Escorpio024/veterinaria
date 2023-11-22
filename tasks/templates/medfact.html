@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tabs.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" onclick="window.location.href='/medicamentos/'">Medicamentos</button>
+        <button type="button" onclick="window.location.href='/ordenes/'">Ordenes</button>
+        <button type="button" >Med.Factura</button>
+        <button type="button" onclick="window.location.href='/facturas/'">Facturas</button>
+        <button type="button" onclick="window.location.href='/personas/'">Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/menu/'">Volver</button>
+    </div>
+
+    <table id="tabla-medfact">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>ID Producto</th>
+                <th>Cantidad</th>
+                <th>Valor Vto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medfact in medicamentos_factura %}
+            <tr data-id="{{ medfact.id_medfact }}">
+                <td>{{ medfact.id_medfact}}</td>
+                <td>{{ medfact.producto }}</td>
+                <td>{{ medfact.cantidad }}</td>
+                <td>{{ medfact.valor_vto }}</td>
+                <td><button class="eliminar">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Agregar nuevo medicamento de factura</h2>
+
+    <form id="formulario-medfact" method="POST">
+        {% csrf_token %}
+        ID Factura: <input type="number" name="id_medfact" required><br>
+        ID Producto: <input type="number" name="producto" required><br>
+        Cantidad: <input type="number" name="cantidad" required><br>
+        Valor Vto: <input type="number" name="valor_vto" required><br>
+        <input type="submit" value="Agregar">
+    </form>
+
+    <script>
+        function eliminarFilaMedFact(fila) {
+            var id = fila.data('id');
+            $.ajax({
+                url: '{% url "eliminar_medfact" %}',
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    id_medfact: id
+                },
+                success: function(response) {
+                    fila.remove();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        function agregarFilaMedFact(formulario) {
+            var datos = formulario.serializeArray();
+            var medfact = {};
+            for (var i = 0; i < datos.length; i++) {
+                medfact[datos[i].name] = datos[i].value;
+            }
+            $.ajax({
+                url: '{% url "agregar_medfact" %}',
+                method: 'POST',
+                data: medfact,
+                success: function(response) {
+                    var fila = $('<tr data-id="' + medfact.id_medfact + '">');
+                    fila.append('<td>' + medfact.id_medfact + '</td>');
+                    fila.append('<td>' + medfact.producto + '</td>');
+                    fila.append('<td>' + medfact.cantidad + '</td>');
+                    fila.append('<td>' + medfact.valor_vto + '</td>');
+                    fila.append('<td><button class="eliminar">Eliminar</button></td>');
+                    $('#tabla-medfact tbody').append(fila);
+                    formulario[0].reset();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#tabla-medfact').on('click', '.editar', function() {
+                var fila = $(this).parent().parent();
+                fila.children('td:not(:last-child)').each(function() {
+                    editarCelda($(this));
+                });
+            });
+
+            $('#tabla-medfact').on('click', '.eliminar', function() {
+                var fila = $(this).parent().parent();
+                if (confirm('¿Está seguro de eliminar este medicamento de factura?')) {
+                    eliminarFilaMedFact(fila);
+                }
+            });
+
+            $('#formulario-medfact').on('submit', function(event) {
+                event.preventDefault();
+                agregarFilaMedFact($(this));
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            background-color: #59C5C8;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: 0;
+        }
+
+        button {
+            background-color: #59C5C8;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            background-color: #f0f2f370;
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #363535;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #524e4e;
+            color: #f0f0f0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" onclick="window.location.href='/medicamentos/'">Medicamentos</button>
+        <button type="button" onclick="window.location.href='/ordenes/'">Ordenes</button>
+        <button type="button" onclick="window.location.href='/medfact/'">Med.Factura</button>
+        <button type="button" onclick="window.location.href='/facturas/'">Facturas</button>
+        <button type="button" onclick="window.location.href='/personas/'">Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/administrador/'">Volver</button>
+    </div>
+</body>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</html>

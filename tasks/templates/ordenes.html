@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Veterinaria</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tabs.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Datos de Veterinaria</h1>
+        <button type="button" onclick="window.location.href='/mascotas/'">Mascotas</button>
+        <button type="button" onclick="window.location.href='/medicamentos/'">Medicamentos</button>
+        <button type="button" >Ordenes</button>
+        <button type="button" onclick="window.location.href='/medfact/'">Med.Factura</button>
+        <button type="button" onclick="window.location.href='/facturas/'">Facturas</button>
+        <button type="button" onclick="window.location.href='/personas/'">Clientes</button>
+        <button type="button" onclick="window.location.href='/hc/'">Historial</button>
+        <button type="button" onclick="window.location.href='/menu/'">Volver</button>
+    </div>
+    <table id="tabla-ordenes">
+        <thead>
+            <tr>
+                <th>ID Orden</th>
+                <th>ID Mascota</th>
+                <th>ID Veterinario</th>
+                <th>ID Medicamento</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orden in ordenes %}
+            <tr data-id="{{ orden.id_orden }}">
+                <td>{{ orden.id_orden }}</td>
+                <td>{{ orden.mascota }}</td>
+                <td>{{ orden.veterinario }}</td>
+                <td>{{ orden.medicamento }}</td>
+                <td>{{ orden.fecha }}</td>
+                <td><button class="eliminar">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Agregar nueva orden</h2>
+
+    <form id="formulario-orden" method="POST">
+        {% csrf_token %}
+        ID Orden: <input type="number" name="id_orden" required><br>
+        ID Mascota: <input type="number" name="mascota" required><br>
+        ID Veterinario: <input type="number" name="veterinario" required><br>
+        ID Medicamento: <input type="number" name="medicamento" required><br>
+        Fecha: <input type="text" name="fecha" required><br>
+        <input type="submit" value="Agregar">
+    </form>
+
+    <script>
+        function eliminarFila(fila) {
+            var id = fila.data('id');
+            $.ajax({
+                url: '{% url "eliminar_orden" %}',
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    id_orden: id
+                },
+                success: function(response) {
+                    fila.remove();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        function agregarFila(formulario) {
+            var datos = formulario.serializeArray();
+            var orden = {};
+            for (var i = 0; i < datos.length; i++) {
+                orden[datos[i].name] = datos[i].value;
+            }
+            $.ajax({
+                url: '{% url "agregar_orden" %}',
+                method: 'POST',
+                data: orden,
+                success: function(response) {
+                    var fila = $('<tr data-id="' + response.id_orden + '">');
+                    fila.append('<td>' + response.id_orden + '</td>');
+                    fila.append('<td>' + orden.mascota + '</td>');
+                    fila.append('<td>' + orden.veterinario + '</td>');
+                    fila.append('<td>' + orden.medicamento + '</td>');
+                    fila.append('<td>' + orden.fecha + '</td>');
+                    fila.append('<td><button class="eliminar">Eliminar</button></td>');
+                    $('#tabla-ordenes tbody').append(fila);
+                    formulario[0].reset();
+                    alert(response.mensaje);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.mensaje);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+
+            $('#tabla-ordenes').on('click', '.editar', function() {
+                var fila = $(this).parent().parent();
+                fila.children('td:not(:last-child)').each(function() {
+                    editarCelda($(this));
+                });
+            });
+
+            $('#tabla-ordenes').on('click', '.eliminar', function() {
+                var fila = $(this).parent().parent();
+                if (confirm('¿Está seguro de eliminar esta orden?')) {
+                    eliminarFila(fila);
+                }
+            });
+
+            $('#formulario-orden').on('submit', function(event) {
+                event.preventDefault();
+                agregarFila($(this));
+            });
+
+        });
+
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+/* Estilos para el formulario de agregar facturas veterinarias */
+#formulario-facturavet {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-facturavet input[type="number"],
+#formulario-facturavet input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-facturavet input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-facturavet input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-facturavet input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-facturavet input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos para el formulario de agregar historias clínicas */
+#formulario-hc {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-hc input[type="number"],
+#formulario-hc input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-hc input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-hc input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-hc input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-hc input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos específicos para el formulario de agregar medfact */
+#formulario-medfact {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-medfact input[type="number"],
+#formulario-medfact input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-medfact input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-medfact input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-medfact input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-medfact input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos para el formulario de agregar medicamentos */
+#formulario-medicamento {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-medicamento input[type="number"],
+#formulario-medicamento input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-medicamento input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-medicamento input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-medicamento input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-medicamento input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos para el formulario de agregar órdenes */
+#formulario-orden {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-orden input[type="number"],
+#formulario-orden input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-orden input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-orden input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-orden input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-orden input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos para el formulario de agregar personas */
+#formulario-persona {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-persona input[type="number"],
+#formulario-persona input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-persona input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-persona input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-persona input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-persona input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* Estilos para el formulario de agregar mascota */
+#formulario-mascota {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario-mascota input[type="number"],
+#formulario-mascota input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formulario-mascota input[type="submit"] {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#formulario-mascota input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#formulario-mascota input[type="button"] {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#formulario-mascota input[type="button"]:hover {
+    background-color: #FF4545;
+}
+
+/* General Styles */
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+h1 {
+    background-color: #59C5C8;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+}
+
+/* Button Styles */
+button {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Table Styles */
+.table {
+    margin-top: 20px;
+}
+
+.table .editar,
+.table .eliminar {
+    background-color: #59C5C8;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+.table .eliminar {
+    background-color: #FF5959;
+}
+
+.table .editar:hover,
+.table .eliminar:hover {
+    background-color: #45a049;
+}
+
+/* Table Content Styles */
+table {
+    background-color: #f0f2f370;
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #363535;
+    padding: 8px;
+}
+
+th {
+    background-color: #524e4e;
+    color: #f0f0f0;
+}

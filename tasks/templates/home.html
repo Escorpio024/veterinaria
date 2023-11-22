@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Veterinaria</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles2.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        {% load static %}
+        <img src="{% static 'img/perro.jpg' %}" class="logo">
+        <li><a href="/">INICIO</a></li>
+        <li><a href="#sec2">SERVICIOS</a></li>
+        <li><a href="#sec3">CONTACTANOS</a></li> 
+        <li>
+          <a class="inicio" href="/signin/">LOGIN/REGISTRO</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>VETERINARIA PARA TODOS</h1>
+
+    <section id="sec1">
+      {% load static %}
+      <img src="{% static 'img/dos.jpg' %}" alt="">
+    </section>
+
+    <h1 id="sec2">SERVICIOS</h1>
+    <section>
+      {% load static %}
+      <div class="button-container">
+        <button id="open"class="custom-button" type="button">
+          <img src="{% static 'img/n.vet.png' %}" alt="">
+        </button>
+        <button id="open2" class="custom-button" type="button">
+          <img src="{% static 'img/ort.vet.png' %}" alt="">
+        </button>
+        <button id="open3" class="custom-button" type="button">
+          <img src="{% static 'img/tomo.png' %}" alt="">
+        </button>
+        <button id="open4" class="custom-button" type="button">
+          <img src="{% static 'img/rad.png' %}" alt="">
+        </button>
+        <button id="open5" class="custom-button" type="button">
+          <img src="{% static 'img/anes.png' %}" alt="">
+        </button>
+        <button id="open6" class="custom-button" type="button">
+          <img src="{% static 'img/eco.png' %}" alt="">
+        </button>
+        <button id="open7" class="custom-button" type="button">
+          <img src="{% static 'img/eco.abd.png' %}" alt="">
+        </button>
+        <button id="open8" class="custom-button" type="button">
+          <img src="{% static 'img/onda.png' %}" alt="">
+        </button>
+        <button id="open9" class="custom-button" type="button">
+          <img src="{% static 'img/con.gen.png' %}" alt="">
+        </button>
+        <button id="open10" class="custom-button" type="button">
+          <img src="{% static 'img/con.card.png' %}" alt="">
+        </button>
+      </div>
+      <div id="modal1" class="modal">
+        <div class="modal_container">
+          <header class="modal__header">
+            <h2 class="modal__title">Neurología Veterinaria</h2>
+            <button id="close" class="modal__close">x</button>
+          </header>
+          <main>
+            <p class="modal__paragraph">En nuestra clínica veterinaria, la neurología veterinaria es una disciplina esencial que proporciona diagnóstico y tratamiento a animales con problemas neurológicos. Nuestro equipo de veterinarios especializados realiza una evaluación completa cuando se detectan signos de trastornos neurológicos, incluyendo la revisión del historial médico, un examen neurológico detallado y, en casos necesarios, pruebas avanzadas como resonancia magnética o tomografía computarizada para obtener imágenes precisas del sistema nervioso. Contamos con tecnología de vanguardia para el diagnóstico preciso y nuestro personal altamente especializado interpreta los resultados y ofrece recomendaciones específicas. La neurología veterinaria nos permite evaluar trastornos como epilepsia, enfermedades neurodegenerativas, lesiones en la columna vertebral, infecciones del sistema nervioso y tumores cerebrales, permitiendo proporcionar un diagnóstico certero. En caso de detectar un problema neurológico, colaboramos contigo para desarrollar un plan de tratamiento personalizado, que puede incluir terapias médicas, cirugía, fisioterapia o recomendaciones de manejo a largo plazo, con el objetivo de mejorar la calidad de vida de tu mascota. Realizamos un seguimiento continuo y ofrecemos servicios de rehabilitación neurológica para una recuperación efectiva. La neurología veterinaria en nuestra clínica es esencial para brindar la mejor atención posible, con un enfoque compasivo y experto en el cuidado neurológico de tu mascota. Puedes confiar en nosotros para diagnosticar y tratar con precisión los trastornos neurológicos, mejorando la calidad de vida de tu amigo peludo.</p>  
+          </main>
+        </div>
+      </div>
+      <div id="modal2" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Ortopedia Veterinaria</h2>
+                <button id="close2" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la ortopedia veterinaria es crucial para el diagnóstico y tratamiento de trastornos musculoesqueléticos en animales. Nuestro equipo de veterinarios especializados realiza evaluaciones detalladas, utilizando tecnología avanzada como radiografías, resonancias magnéticas o tomografías computarizadas. Con personal altamente capacitado, abordamos problemas como fracturas, luxaciones, lesiones de ligamentos, displasia de cadera y codo, proporcionando diagnósticos precisos. Desarrollamos planes de tratamiento personalizados, que pueden incluir cirugía, terapia física, medicamentos o recomendaciones de manejo a largo plazo, con el objetivo de mejorar la calidad de vida de tu mascota. Realizamos un seguimiento continuo y ofrecemos servicios de rehabilitación ortopédica para garantizar una recuperación efectiva. La ortopedia veterinaria en nuestra clínica es esencial para brindar atención especializada y experta, buscando mejorar la vida de tu amigo peludo con diagnósticos precisos y tratamientos efectivos para trastornos musculoesqueléticos. Confía en nosotros para proporcionar una atención compasiva y de alta calidad en el cuidado ortopédico de tu mascota.</p>
+            </main>
+        </div>
+      </div>
+      <div id="modal3" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Tomografía veterinaria </h2>
+                <button id="close3" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la neurología veterinaria es fundamental para diagnosticar y tratar problemas neurológicos en animales. Nuestro equipo de veterinarios especializados realiza evaluaciones exhaustivas, utilizando tecnología avanzada como resonancia magnética y tomografía computarizada. Con personal altamente capacitado, abordamos trastornos como epilepsia, enfermedades neurodegenerativas, lesiones en la columna vertebral, infecciones y tumores cerebrales, proporcionando diagnósticos precisos. Desarrollamos planes de tratamiento personalizados, que pueden incluir terapias médicas, cirugía o fisioterapia, con el objetivo de mejorar la calidad de vida de tu mascota. Realizamos un seguimiento continuo y ofrecemos servicios de rehabilitación neurológica para garantizar una recuperación efectiva. Confía en nosotros para brindar atención compasiva y experta en neurología veterinaria, buscando mejorar la vida de tu amigo peludo.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal4" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Radiología veterinaria </h2>
+                <button id="close4" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la radiología veterinaria es una herramienta esencial para obtener imágenes de alta calidad con fines diagnósticos en tus mascotas. Nuestro equipo realiza evaluaciones diagnósticas especializadas basadas en el historial médico y el examen físico, recomendando radiografías según sea necesario. Contamos con equipos de radiología digital de última generación diseñados para animales, operados por personal especializado, incluyendo técnicos de radiología y veterinarios. Estos generan imágenes detalladas de huesos, órganos y tejidos blandos, permitiéndonos diagnosticar con precisión condiciones como fracturas, problemas cardíacos y obstrucciones gastrointestinales. La radiología es un procedimiento no invasivo y seguro, que se realiza de manera cómoda para tu mascota. Después de la toma de radiografías, nuestro equipo interpreta las imágenes y desarrolla un plan de tratamiento personalizado, que puede incluir cirugía, terapia médica u otras recomendaciones. La radiología veterinaria en nuestra clínica garantiza diagnósticos precisos y una atención de alta calidad, priorizando el bienestar de tu amigo peludo en todo momento. Confía en nosotros para brindar el mejor cuidado en el diagnóstico y tratamiento de tus mascotas.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal5" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Anestesia: </h2>
+                <button id="close5" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la anestesia es esencial para asegurar procedimientos seguros y cómodos para nuestros pacientes, con un enfoque máximo en su bienestar. Previo a cualquier intervención, realizamos una exhaustiva evaluación preanestésica, considerando historial médico, exámenes físicos y pruebas adicionales según sea necesario. Contamos con un equipo altamente capacitado de anestesiólogos veterinarios y técnicos especializados que adaptan la anestesia y medicamentos según las necesidades específicas de cada mascota, garantizando seguridad y bienestar. Durante el procedimiento, empleamos monitoreo constante con equipos avanzados para supervisar signos vitales como frecuencia cardíaca, presión arterial y saturación de oxígeno. La gestión del dolor es prioritaria, utilizando analgésicos para asegurar una experiencia libre de dolor y una recuperación tranquila. Postoperatoriamente, mantenemos un ambiente cálido y tranquilo, con monitoreo continuo para asegurar una recuperación segura y efectiva. Nuestra dedicación a la anestesia refleja nuestro compromiso con la salud y bienestar de tu mascota, asegurando que esté en las mejores manos durante cualquier procedimiento que requiera anestesia.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal6" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Ecocardiografía</h2>
+                <button id="close6" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la ecocardiografía es una herramienta crucial para evaluar la salud cardíaca de tu mascota. Este procedimiento de ultrasonido proporciona imágenes detalladas del corazón, siendo precedido por una exhaustiva revisión del historial médico y un examen físico completo por un especialista en cardiología veterinaria. Utilizamos equipos de ultrasonido de última generación diseñados específicamente para estudios cardíacos, permitiendo una visualización precisa de las estructuras cardíacas. Nuestro equipo de especialistas en cardiología supervisa el procedimiento, interpretando las imágenes para un diagnóstico preciso. La ecocardiografía nos proporciona información detallada sobre la estructura y función cardíaca, evaluando el tamaño de las cavidades, la función valvular y el flujo sanguíneo. El procedimiento es no invasivo, indoloro y breve, minimizando el estrés para tu mascota. Después de la ecocardiografía, nuestro equipo elabora un diagnóstico detallado y, si es necesario, un plan de tratamiento que puede incluir medicamentos, cambios en la dieta o recomendaciones para futuros controles. Nuestro enfoque es brindar un servicio de calidad que garantice la comodidad y bienestar de tu amigo peludo, asegurando un diagnóstico preciso y el mejor cuidado para su salud cardíaca. Confía en nosotros para brindar el servicio más completo y experto en ecocardiografía veterinaria.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal7" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Ecografía abdominal</h2>
+                <button id="close7" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, la ecografía abdominal es una herramienta valiosa para evaluar la salud de tus mascotas. Este procedimiento de ultrasonido proporciona imágenes detalladas de las estructuras internas del abdomen, precedido por una revisión exhaustiva del historial médico y un examen físico completo por un veterinario para determinar su necesidad y enfoque adecuado. Utilizamos equipos de ultrasonido avanzados diseñados específicamente para exploración abdominal en animales, permitiendo una visualización detallada de órganos como el hígado, riñones, bazo, estómago e intestinos. Nuestro equipo de profesionales, incluyendo veterinarios y técnicos especializados en ultrasonido, realiza y supervisa el procedimiento, interpretando imágenes y identificando posibles anormalidades. La ecografía abdominal, no invasiva y no dolorosa, es bien tolerada por las mascotas, sin necesidad de anestesia y con una duración corta para minimizar el estrés. Posteriormente, nuestro equipo analiza las imágenes y proporciona un diagnóstico detallado, elaborando un plan de tratamiento adecuado si se detectan problemas, como obstrucciones, inflamaciones o masas, que puede incluir cirugía, medicamentos u otras recomendaciones. Nuestro compromiso es brindar un servicio de alta calidad que garantice la comodidad y bienestar de tu amigo peludo, ofreciendo diagnósticos precisos y planes de tratamiento efectivos para abordar cualquier problema en los órganos abdominales. Puedes confiar en nosotros para cuidar la salud de tu mascota.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal8" class="modal">
+        <div class="modal_container">
+            <header class="modal__header">
+                <h2 class="modal__title">Ondas de choque</h2>
+                <button id="close8" class="modal__close">x</button> 
+            </header>
+            <main>
+                <p class="modal__paragraph">En nuestra clínica veterinaria, las ondas de choque son una terapia innovadora que ofrecemos para tratar diversas condiciones musculoesqueléticas en tus mascotas. Antes de recomendar el tratamiento, nuestros veterinarios evalúan la condición de tu mascota mediante historial médico, examen físico y, en ocasiones, imágenes diagnósticas. Utilizamos equipos de ondas de choque de última generación diseñados para animales, aplicando ondas de alta energía de manera controlada y enfocada sobre las áreas afectadas para estimular la curación y reducir el dolor. Nuestro equipo altamente capacitado realiza y supervisa el procedimiento, aplicando las ondas de choque directamente sobre tejidos blandos, articulaciones o huesos. Esta terapia puede acelerar la curación, reducir la inflamación y aliviar el dolor en condiciones como tendinitis, osteoartritis y lesiones musculares, promoviendo la formación de tejido sano. La terapia es generalmente bien tolerada, sin necesidad de anestesia ni sedación, permitiendo que las mascotas regresen a sus actividades normales después del tratamiento. Realizamos un seguimiento para evaluar la respuesta al tratamiento y ajustar el plan si es necesario, pudiendo recomendar ejercicios de rehabilitación. En nuestra veterinaria, las ondas de choque son una opción terapéutica no invasiva y efectiva, buscando proporcionar alivio del dolor y mejorar la calidad de vida de tu mascota con atención personalizada y de alta calidad. Puedes confiar en nosotros para el cuidado de tu amigo peludo.</p>
+            </main>
+        </div>  
+      </div>
+      <div id="modal9" class="modal">
+        <div class="modal_container">
+          <header class="modal__header">
+            <h2 class="modal__title">Consulta General</h2>
+            <button id="close9" class="modal__close">x</button>
+          </header>
+          <main>
+            <label for="consulta_general" class="modal-label">Debes de iniciar sesion primero</label><br>
+            <button id="enviarConsultaGeneral" class="modal-button" onclick="window.location.href='/signin/'" style="border-radius: 50px">Iniciar sesion</button>
+          </main>
+        </div>
+      </div>
+      <div id="modal10" class="modal">
+        <div class="modal_container">
+          <header class="modal__header">
+            <h2 class="modal__title">Consulta Cardiológica</h2>
+            <button id="close10" class="modal__close">x</button>
+          </header>
+          <main>
+            <label for="consulta_general" class="modal-label">Debes de iniciar sesion primero</label><br>
+            <button id="enviarConsultaGeneral" class="modal-button" onclick="window.location.href='/signin/'" style="border-radius: 50px">Iniciar sesion</button>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <h1 id="sec3">CONTACTANOS</h1>
+    <section>
+      <div id="layout" class="wf-layout-layout">
+        <div id="cell3" class="layout-cell-3">
+          <p class="paragraph">⏱ HORARIOS DE ATENCIÓN<br><br>Lunes a viernes de 8:00 am a 6:00 pm<br><br>sábado de 8:00 am a 4:00 pm</p>
+        </div>
+        <div id="cell2" class="layout-cell-2">
+          <p class="paragraph">CRA 77 #5-10 BHouston, Sabaneta<br><br>TEL: 3425342345<br>CEL: 72384723985<br><br>CORREO: holas@gmail.com</p>
+        </div>
+        <div id="cell" class="layout-cell">
+          {% load static %}
+          <img src="{% static 'img/clinica.jpg' %}" loading="lazy" width="273" sizes="(max-width: 479px) 100vw, 273px" alt="" class="clinica">  
+        </div>
+      </div>
+    </section>
+  </div>
+
+  </body>
+  <footer>
+    <div class="contenedor-texto">
+      <p>Vet Clinic 2023 © Sabaneta, Colombia</p>
+      <a href="/">Inicio</a>
+    </div>
+  </footer>
+
+  {% load static %}
+  <script src="{% static 'modal.js' %}"></script>
+</html>

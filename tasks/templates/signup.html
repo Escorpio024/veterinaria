@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+  <style>
+    #rol {
+      width: 100%;
+      padding: 7px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="/">INICIO</a></li> 
+      </ul>
+    </nav>
+  </header>
+  <div id="inicio">
+    <img src="{% static 'img/cachorrao.jpg' %}" class="cachorrao">
+    <h3>Registrarse</h3>
+    {{error}}
+    <form action="/signup/" method="POST" id="loginForm">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" placeholder="Escribe tu usuario" required>
+      </div>
+      <div class="form-group">
+        <label for="password1">Contraseña:</label>
+        <input type="password" id="password1" name="password1" placeholder="Escribe tu contraseña" required>
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirma tu contraseña:</label>
+        <input type="password" id="password2" name="password2" placeholder="Confirma tu contraseña" required>
+      </div>
+      <label for="password2">Elige tu rol:</label>
+      <select id="rol" name="rol">
+        <option value="administrador">Administrador</option>
+        <option value="cliente">Cliente</option>
+      </select>
+      <button type="submit">Registrarse</button>
+      <br></br>
+    </form>
+    <a href="/signin/">Iniciar sesión</a>
+  </div>
+</body>
+</html>
